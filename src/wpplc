@@ -2,7 +2,7 @@
 set -e
 
 if [ ! -w $(pwd) ]; then
-    echo You mus have permission in the current folder to be able to create the plugin folder.
+    echo You must have permission in the current folder to be able to create the plugin folder.
     exit
 fi
 
@@ -32,6 +32,9 @@ license=$resp
 
 read -p "Place to save plugin (may be an WordPress plugin path): " resp
 plugin_path=$resp
+if [ $(echo $resp | wc -c) -eq 1 ]; then
+    plugin_path=$(pwd)
+fi
 
 destination_path=$plugin_path/$machine_name
 mkdir $destination_path
