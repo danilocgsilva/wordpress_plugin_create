@@ -1,5 +1,11 @@
 #!/bin/bash
 set -e
+
+if [ ! -w $(pwd) ]; then
+    echo You mus have permission in the current folder to be able to create the plugin folder.
+    exit
+fi
+
 read -p "What is the plugin name? " resp
 name_human=$resp
 
@@ -30,6 +36,7 @@ plugin_path=$resp
 destination_path=$plugin_path/$machine_name
 mkdir $destination_path
 file=/tmp/$machine_name.php
+
 touch $file
 echo "<?php" >> $file
 echo "/*" >> $file
